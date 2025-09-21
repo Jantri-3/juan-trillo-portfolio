@@ -41,8 +41,7 @@ const Navbar = () => {
       >
         <a
           href="/Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
+          download
           className="text-inherit no-underline"
         >
           Resume
