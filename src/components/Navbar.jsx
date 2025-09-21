@@ -40,7 +40,7 @@ const Navbar = () => {
         } hover:text-white text-[20px] font-medium cursor-pointer`}
       >
         <a
-          href="/Resume.pdf"
+          href="Resume.pdf"
           download
           className="text-inherit no-underline"
         >
