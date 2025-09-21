@@ -43,5 +43,4 @@ export {
   BNP,
   menu,
   close,
-  eduskill,
 };
