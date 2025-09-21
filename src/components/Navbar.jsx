@@ -41,7 +41,8 @@ const Navbar = () => {
       >
         <a
           href={`${import.meta.env.BASE_URL}Resume.pdf`}
-          download
+          download="Resume.pdf"
+          type="application/pdf"
           className="text-inherit no-underline"
         >
           Resume
