@@ -5,7 +5,6 @@ import { technologies } from "../constants";
 const renderTechnologies = () => {
   return technologies.map(({ name, icon }) => (
     <div className="w-28 h-28" key={name}>
-      <BallCanvas icon={icon} />
     </div>
   ));
 };
