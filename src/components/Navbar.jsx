@@ -8,10 +8,7 @@ const Navbar = () => {
   const [active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
 
-  const toggleResume = () => {
-    const resumeUrl = '/Resume.pdf';
-    window.open(resumeUrl);
-  };
+
 
   useEffect(() => {
     if (toggle) {
@@ -24,7 +21,7 @@ const Navbar = () => {
       {navLinks.map((link) => (
         <li
           key={link.id}
-          className={`${
+          className={`$
             active === link.title ? 'text-white' : isSecondary ? 'text-secondary' : 'text-white'
           } hover:text-white text-[20px] font-medium cursor-pointer`}
           onClick={() => {
@@ -42,7 +39,14 @@ const Navbar = () => {
           isSecondary ? 'secondary' : 'white'
         } hover:text-white text-[20px] font-medium cursor-pointer`}
       >
-        <button onClick={toggleResume}>Resume</button>
+        <a
+          href="/Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-inherit no-underline"
+        >
+          Resume
+        </a>
       </li>
     </ul>
   );
