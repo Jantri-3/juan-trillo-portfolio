@@ -21,6 +21,7 @@ const InputField = ({ label, value, onChange, placeholder, name, type }) => (
   </label>
 );
 
+
 const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
@@ -32,6 +33,23 @@ const Contact = () => {
   const [emailError, setEmailError] = useState("");
   const [nameError, setNameError] = useState("");
   const [confirmation, setConfirmation] = useState("");
+  // Math captcha state
+  const [captcha, setCaptcha] = useState({
+    question: "",
+    answer: ""
+  });
+  const [captchaInput, setCaptchaInput] = useState("");
+  const [captchaError, setCaptchaError] = useState("");
+
+  // Generate a simple math question
+  React.useEffect(() => {
+    const a = Math.floor(Math.random() * 10) + 1;
+    const b = Math.floor(Math.random() * 10) + 1;
+    setCaptcha({
+      question: `What is ${a} + ${b}?`,
+      answer: (a + b).toString(),
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,6 +69,7 @@ const Contact = () => {
     setEmailError("");
     setNameError("");
     setConfirmation("");
+    setCaptchaError("");
 
     if (!validateEmail(form.email)) {
       setEmailError("Please enter a valid email address.");
@@ -59,6 +78,11 @@ const Contact = () => {
 
     if (!form.name.trim()) {
       setNameError("Name is required.");
+      return;
+    }
+
+    if (captchaInput.trim() !== captcha.answer) {
+      setCaptchaError("Incorrect answer to the anti-spam question.");
       return;
     }
 
@@ -87,12 +111,28 @@ const Contact = () => {
             email: "",
             message: "",
           });
+          setCaptchaInput("");
+          // Optionally regenerate captcha
+          const a = Math.floor(Math.random() * 10) + 1;
+          const b = Math.floor(Math.random() * 10) + 1;
+          setCaptcha({
+            question: `What is ${a} + ${b}?`,
+            answer: (a + b).toString(),
+          });
         }
       )
       .catch((error) => {
         setLoading(false);
-        console.error(error);
-        setConfirmation("Something went wrong. Please try again. :/");
+        let errorMsg = "Something went wrong. Please try again. :/";
+        if (error && error.text) {
+          errorMsg += `\nDetails: ${error.text}`;
+        } else if (error && error.message) {
+          errorMsg += `\nDetails: ${error.message}`;
+        } else if (typeof error === 'string') {
+          errorMsg += `\nDetails: ${error}`;
+        }
+        console.error("EmailJS error:", error);
+        setConfirmation(errorMsg);
       });
   };
 
@@ -132,6 +172,18 @@ const Contact = () => {
             type="text"
           />
 
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-4">Anti-spam: {captcha.question}</span>
+            <input
+              type="text"
+              name="captcha"
+              value={captchaInput}
+              onChange={e => setCaptchaInput(e.target.value)}
+              placeholder="Enter your answer here"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+            />
+            {captchaError && <span className="text-red-500">{captchaError}</span>}
+          </label>
           <button
             type="submit"
             className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary"
