@@ -36,7 +36,13 @@ const ProjectCard = ({ name, description, tags, image, source_code_link }) => {
         </div>
         <div className="mt-5">
           <h3 className="text-white font-bold text-[24px]">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px]">{description}</p>
+          <p className="mt-2 text-secondary text-[14px] break-words whitespace-pre-line">
+            {description.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+              part.match(/https?:\/\//)
+                ? <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="underline break-all">{part}</a>
+                : part
+            )}
+          </p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           {tags.map((tag) => (
