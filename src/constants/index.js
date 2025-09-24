@@ -10,9 +10,10 @@ import {
   BNP,
   nodejs,
   git,
-  Steganography,//substitute with steganography
+  Steganography,
   DOMJudge,
   EvolutionProject,
+  Find_Vuln,
 
 } from "../assets";
 
@@ -104,5 +105,17 @@ export const projects = [
     image: EvolutionProject,
     source_code_link:
       "https://github.com/Jantri-3/Evolutionary-Programming",
+  },
+  {
+    name: "Find Vulnerabilities of React Apps dependencies",
+    description:
+      "Project that provides users with an online tool to upload their React, Vue, or Node.js project files and receive a vulnerability assessment based on static analyzers as well as API calls to databases and Deepseek's LLM.",
+    tags: [
+      { name: "Python", color: "pink-text-gradient" },
+      { name: "Javascript", color: "orange-text-gradient" },
+      { name: "CSS", color: "yellow-text-gradient" },
+    ],
+    image: Find_Vuln,
+    source_code_link: "https://github.com/cseas002/find_react_vulnerabilities",
   },
 ];

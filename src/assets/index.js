@@ -8,6 +8,7 @@ import java from "./tech-stack/java.png";
 import Steganography from "./projects/Steganography.png";
 import DOMJudge from "./projects/DOMJudge.png";
 import EvolutionProject from "./projects/EvolutionProject.png";
+import Find_Vuln from "./projects/Find_Vuln.png"
 
 // Import tech logos
 import css from "./tech/css.png";
@@ -40,6 +41,7 @@ export {
   Steganography,
   DOMJudge,
   EvolutionProject,
+  Find_Vuln,
   BNP,
   menu,
   close,
