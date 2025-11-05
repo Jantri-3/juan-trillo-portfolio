@@ -40,7 +40,7 @@ const Navbar = () => {
         } hover:text-white text-[20px] font-medium cursor-pointer`}
       >
         <a
-          href={`${import.meta.env.BASE_URL}Resume.pdf`}
+          href={`${import.meta.env.BASE_URL}/Resume.pdf`}
           download="Resume.pdf"
           type="application/pdf"
           className="text-inherit no-underline"
